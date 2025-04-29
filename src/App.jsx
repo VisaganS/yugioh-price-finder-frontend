@@ -1,9 +1,9 @@
 import './styles/App.scss';
 
 import React, { useState } from 'react';
-import SearchBar from './components/SearchBar';
-import ResultsTable from './components/ResultsTable';
-import LoadingOverlay from './components/LoadingOverlay';
+import SearchBar from './components/SearchBar/SearchBar';
+import ResultsTable from './components/ResultsTable/ResultsTable';
+import LoadingOverlay from './components/LoadingOverlay/LoadingOverlay';
 import { useFetchCards } from './hooks/useFetchCards';
 
 export default function App() {

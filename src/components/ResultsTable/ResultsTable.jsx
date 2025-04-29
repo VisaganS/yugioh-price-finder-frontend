@@ -26,7 +26,7 @@ export default function ResultsTable({ data }) {
               <td>{row.stock}</td>
               <td>{row.price}</td>
               <td>
-                <a href={row.url} target="_blank" rel="noopener noreferrer">
+                <a href={row.link} target="_blank" rel="noopener noreferrer">
                   View
                 </a>
               </td>

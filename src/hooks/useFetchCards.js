@@ -10,7 +10,7 @@ export function useFetchCards() {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch(`${API_BASE}/card/${encodeURIComponent(name)}`);
+      const res = await fetch(`${API_BASE}/card/${name}`);
       if (!res.ok) throw new Error(res.statusText);
       setResults(await res.json());
     } catch (e) {
