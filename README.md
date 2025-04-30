@@ -1,70 +1,155 @@
-# Getting Started with Create React App
+# Yu-Gi-Oh! Price Finder Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React.js frontend that allows users to search for Yu-Gi-Oh! cards and displays live price comparison results in a responsive SCSS-styled table. It communicates with the Express backend at `/card/:cardName`.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Table of Contents
+1. [Features](#features)
+2. [Tech Stack](#tech-stack)
+3. [Prerequisites](#prerequisites)
+4. [Installation](#installation)
+5. [Environment Variables](#environment-variables)
+6. [Project Structure](#project-structure)
+7. [Scripts](#scripts)
+8. [Usage](#usage)
+9. [Styling](#styling)
+10. [Contributing](#contributing)
+11. [License](#license)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Search bar to enter card name
+- Fetches price comparison data from backend API
+- Displays results in a clean, responsive table
+- Loading indicator overlay
+- Error handling for network/API failures
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Tech Stack
 
-### `npm run build`
+- **React.js** (Create React App or Vite)
+- **SCSS** for component-level styling
+- **Fetch API** for HTTP requests
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Prerequisites
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Node.js v14+ and npm (or Yarn)
+- Backend server running and accessible (default at `http://localhost:3001`)
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Installation
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Clone or download this repo:
+   ```bash
+   git clone https://github.com/yourusername/yugioh-price-finder-frontend.git
+   cd yugioh-price-finder-frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Environment Variables
 
-## Learn More
+Create a `.env` file in the project root (will be automatically loaded):
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```ini
+# API base URL for the backend
+REACT_APP_API_URL=http://localhost:3001
+```  
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This will set the `API_BASE` in `src/config.js`.
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Project Structure
 
-### Analyzing the Bundle Size
+```
+frontend/
+├── public/
+│   └── index.html           # HTML template
+├── src/
+│   ├── components/          # Reusable UI components
+│   │   ├── SearchBar/
+│   │   │   ├── SearchBar.jsx
+│   │   │   └── SearchBar.scss
+│   │   ├── ResultsTable/
+│   │   │   ├── ResultsTable.jsx
+│   │   │   └── ResultsTable.scss
+│   │   └── LoadingOverlay/
+│   │       ├── LoadingOverlay.jsx
+│   │       └── LoadingOverlay.scss
+│   ├── hooks/               # Custom React hooks
+│   │   └── useFetchCards.js
+│   ├── config.js            # API base URL configuration
+│   ├── App.jsx              # Main App component
+│   ├── index.jsx            # ReactDOM entry point
+│   └── index.css            # Global styles (if any)
+├── .env                     # Environment overrides (gitignored)
+├── package.json
+└── README.md
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+## Scripts
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **`npm start`**: Runs the app in development mode at [http://localhost:3000](http://localhost:3000).  
+- **`npm run build`**: Builds the app for production to the `build/` folder.  
+- **`npm test`**: Runs tests (if configured).  
+- **`npm run eject`**: Exposes configuration files (CRA only).
 
-### Advanced Configuration
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## Usage
 
-### Deployment
+1. Ensure your backend server is running and CORS is enabled.  
+2. Start this frontend:
+   ```bash
+   npm start
+   ```
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.  
+4. Enter a card name in the search bar and hit **Search**.  
+5. View the sorted, in-stock price listings in the table.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+---
 
-### `npm run build` fails to minify
+## Styling
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+All styling is done with SCSS modules under `src/styles/`:
+
+- Variables and mixins in `_variables.scss` and `_mixins.scss`  
+- Layout and typography in `App.scss`  
+- Component-specific styles in their respective `.scss` files  
+
+The app imports these SCSS files at the top of each component.
+
+---
+
+## Contributing
+
+1. Fork this repository.  
+2. Create a feature branch: `git checkout -b feature/MyFeature`.  
+3. Commit your changes: `git commit -m 'Add MyFeature'`.  
+4. Push to your branch: `git push origin feature/MyFeature`.  
+5. Open a pull request.
+
+Please follow existing code style and include relevant tests.
+
+---
+
+## License
+
+MIT License. See [LICENSE](../backend/LICENSE) for details.
+
